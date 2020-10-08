@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(mPlayer != null){
             mPlayer.release();
         }
-        mPlayer =  MediaPlayer.create(this,R.raw.one);
-        mPlayer.seekTo(0);
-        mPlayer.start();
+       mPlayer =  MediaPlayer.create(this,R.raw.one);
+       mPlayer.seekTo(0);
+       mPlayer.start();
         btnMusicPause= (Button) findViewById(R.id.btnMusicPause);
         btnMusicPause.setOnClickListener(this);
     }
@@ -33,5 +33,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPlayer =  MediaPlayer.create(this,R.raw.one);
         mPlayer.seekTo(0);
         mPlayer.pause();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPlayer.pause();
+        //La app esta en segundo plano (background).
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPlayer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPlayer.stop();
+        mPlayer.release();
+        //liberacion de recursos
     }
 }
