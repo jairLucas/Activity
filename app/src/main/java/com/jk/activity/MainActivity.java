@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    MediaPlayer mPlayer;
+    MediaPlayer mPlayer;    //usamos media player para hacer uso de un recurso mp3
     Button btnMusicPause;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(mPlayer != null){
             mPlayer.release();
         }
-       mPlayer =  MediaPlayer.create(this,R.raw.one);
-       mPlayer.seekTo(0);
-       mPlayer.start();
+        mPlayer =  MediaPlayer.create(this,R.raw.one);
+        mPlayer.seekTo(0);
+        mPlayer.start();
         btnMusicPause= (Button) findViewById(R.id.btnMusicPause);
         btnMusicPause.setOnClickListener(this);
     }
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         mPlayer.start();
+        //la aplicacion regresa a primer plano (foreground)
     }
 
     @Override
